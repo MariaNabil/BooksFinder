@@ -3,7 +3,6 @@ import {useState} from 'react';
 import {StatusBar, View, Text, TouchableOpacity, FlatList} from 'react-native';
 import {bgColor, mainColor} from '../../constants/colors';
 import {largePadding, smallPadding} from '../../constants/styles';
-import ItemSeparator from '../../CustomComponents/ItemSeparator';
 import RoundedButton from '../../CustomComponents/RoundedButton';
 import RoundedInput from '../../CustomComponents/RoundedInput';
 import {GetBookByISBN} from '../../Services/BookServices';
@@ -72,7 +71,6 @@ const Home = props => {
         data={books}
         keyExtractor={(item, index) => `${index}`}
         renderItem={renderBookItem}
-        ItemSeparatorComponent={() => <ItemSeparator />}
         style={{marginVertical: largePadding}}></FlatList>
     );
   };
@@ -82,7 +80,20 @@ const Home = props => {
     return (
       <TouchableOpacity
         style={{
+          backgroundColor: bgColor,
           paddingVertical: smallPadding,
+          paddingHorizontal: smallPadding,
+          borderRadius: 10,
+          marginVertical: 5,
+          marginHorizontal: 2,
+          shadowColor: '#000',
+          shadowOffset: {
+            width: 0,
+            height: 5,
+          },
+          shadowOpacity: 0.36,
+          shadowRadius: 6.68,
+          elevation: 5,
         }}>
         <Text>{title}</Text>
       </TouchableOpacity>
