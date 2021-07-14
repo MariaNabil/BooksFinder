@@ -94,7 +94,8 @@ const Home = props => {
           shadowOpacity: 0.36,
           shadowRadius: 6.68,
           elevation: 5,
-        }}>
+        }}
+        onPress={() => props.navigation.navigate('Details', {item: item})}>
         <Text>{title}</Text>
       </TouchableOpacity>
     );

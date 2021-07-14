@@ -4,6 +4,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {SafeAreaView} from 'react-native';
 import Home from '../screens/Home';
 import {bgColor, mainColor} from '../constants/colors';
+import Details from '../screens/Details';
 
 const Stack = createStackNavigator();
 
@@ -24,6 +25,19 @@ export default function Navigation() {
               },
               headerTitleStyle: {
                 alignSelf: 'center',
+                color: bgColor,
+              },
+            }}
+          />
+
+          <Stack.Screen
+            name="Details"
+            component={Details}
+            options={{
+              headerStyle: {
+                backgroundColor: mainColor,
+              },
+              headerTitleStyle: {
                 color: bgColor,
               },
             }}
