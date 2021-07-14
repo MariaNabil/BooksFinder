@@ -6,10 +6,43 @@ import {largePadding, smallPadding} from '../../constants/styles';
 import ItemSeparator from '../../CustomComponents/ItemSeparator';
 import RoundedButton from '../../CustomComponents/RoundedButton';
 import RoundedInput from '../../CustomComponents/RoundedInput';
+import {GetBookByISBN} from '../../Services/BookServices';
+import Toast from 'react-native-simple-toast';
+import NetInfo from '@react-native-community/netinfo';
 
 const Home = props => {
-  const [searchFor, setSearchFor] = useState(null);
+  const [searchFor, setSearchFor] = useState('');
   const [books, setBooks] = useState([]);
+  const [Loading, setLoading] = useState(false);
+  let cancelFetchData;
+
+  const fetchBook = async () => {
+    //Check The Internet Connection Before Fetching All Movies
+    const {isConnected} = await NetInfo.fetch();
+    if (isConnected) {
+      setLoading(true);
+      cancelFetchData = GetBookByISBN(
+        searchFor,
+        res => {
+          setBooks([...books, res.data]);
+          setLoading(false);
+          setSearchFor('');
+        },
+        error => {
+          setLoading(false);
+          if (error.status == 404)
+            Toast.show('This ISBN is not found', Toast.LONG);
+        },
+      );
+    } else {
+      // If Not Connected To the Internet
+      Toast.show(
+        'You Are Offline , Please Check Your Internet Connection',
+        Toast.LONG,
+      );
+    }
+  };
+
   const renderISBNInput = () => {
     return (
       <RoundedInput
@@ -23,17 +56,7 @@ const Home = props => {
 
   const renderSearchButton = () => {
     return (
-      <RoundedButton
-        title={
-          searchFor && searchFor !== '' && books && books.length
-            ? 'Search Again'
-            : 'Search'
-        }
-        onPress={() => {
-          console.log('search', searchFor);
-          //call request Here
-        }}
-      />
+      <RoundedButton title={'Search'} loading={Loading} onPress={fetchBook} />
     );
   };
 
