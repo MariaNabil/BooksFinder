@@ -55,12 +55,14 @@ const Details = props => {
           {`Number Of Pages : ${item.number_of_pages}`}
         </Text>
 
-        <Text style={{fontSize: smallFontSize, paddingTop: smallPadding}}>
-          Authors :
-        </Text>
-        {item.authors.map(author => (
-          <Authors query={author.key} />
-        ))}
+        {item.authors && item.authors.length ? (
+          <View style={{paddingVertical: smallPadding}}>
+            <Text style={{fontSize: smallFontSize}}>Authors :</Text>
+            {item.authors.map(author => (
+              <Authors query={author.key} />
+            ))}
+          </View>
+        ) : null}
       </View>
     </QueryClientProvider>
   );
