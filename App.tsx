@@ -1,5 +1,5 @@
 import React from 'react';
-import {SafeAreaView, StyleSheet, View} from 'react-native';
+import {StyleSheet , View} from "react-native";
 import Navigation from './src/navigation';
 
 export default function App() {

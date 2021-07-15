@@ -3,8 +3,11 @@ import {Text, TextInput, View} from 'react-native';
 import {useState} from 'react/cjs/react.development';
 import {bgColor, secondColor} from '../../constants/colors';
 
-const RoundedInput = props => {
-  const [isFocused, setIsFocused] = useState(false);
+type Props = {
+  label: string,
+}
+const RoundedInput = ( props : Props ) => {
+  const [isFocused, setIsFocused] = useState<Boolean>(false);
   const renderlabel = () => {
     const {label} = props;
 
@@ -33,7 +36,6 @@ const RoundedInput = props => {
       {renderlabel()}
 
       <TextInput
-        {...props}
         style={{
           borderWidth: 0.5,
           paddingHorizontal: 10,

@@ -1,10 +1,13 @@
 import React from 'react';
 import {ActivityIndicator, Text, TouchableOpacity} from 'react-native';
-import {bgColor, secondColor} from '../../constants/colors';
+import {bgColor, secondColor} from '../../constants/colors.js';
 
-const RoundedButton = props => {
-  const {title, loading = false, onPress} = props;
-
+type Props = {
+   onPress(): void,
+   title: string,
+   loading:boolean
+}
+const RoundedButton= ({title, loading = false, onPress}:Props) => {
   return (
     <TouchableOpacity
       onPress={onPress}
