@@ -48,7 +48,8 @@ const Home = props => {
         label="ISBN"
         value={searchFor}
         onChangeText={text => {
-          setSearchFor(text);
+          //Search box should accept numbers only.
+          if (!isNaN(text)) setSearchFor(text.trim());
         }}></RoundedInput>
     );
   };

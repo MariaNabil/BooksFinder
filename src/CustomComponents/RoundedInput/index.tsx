@@ -1,15 +1,16 @@
 import React from 'react';
 import {Text, TextInput, View} from 'react-native';
 import {useState} from 'react/cjs/react.development';
-import {bgColor, secondColor} from '../../constants/colors';
+import {bgColor, mainColor, secondColor} from '../../constants/colors';
 
 type Props = {
   label: string,
+  value: string,
+  onChangeText: void
 }
-const RoundedInput = ( props : Props ) => {
+const RoundedInput = ( {label,value,onChangeText} : Props ) => {
   const [isFocused, setIsFocused] = useState<Boolean>(false);
   const renderlabel = () => {
-    const {label} = props;
 
     return (
       <Text
@@ -20,7 +21,7 @@ const RoundedInput = ( props : Props ) => {
           marginHorizontal: 5,
           paddingHorizontal: 5,
           alignSelf: 'flex-start',
-          color: isFocused ? secondColor : '#141823',
+          color: isFocused ? secondColor : mainColor,
           backgroundColor: bgColor,
         }}>
         {label}
@@ -46,7 +47,7 @@ const RoundedInput = ( props : Props ) => {
           borderRadius: 10,
           textAlign: 'left',
         }}
-        placeholder={`Please Enter ${props.label}`}
+        placeholder={`Please Enter ${label}`}
         underlineColorAndroid="transparent"
         selectionColor={secondColor}
         onFocus={() => {
@@ -55,6 +56,9 @@ const RoundedInput = ( props : Props ) => {
         onBlur={() => {
           setIsFocused(false);
         }}
+        keyboardType="numeric"
+        value={value}
+        onChangeText={onChangeText}
       />
     </View>
   );
