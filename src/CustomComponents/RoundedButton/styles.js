@@ -4,11 +4,10 @@ export default {
   root: {
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 12,
+    padding: 13,
     borderRadius: 10,
     backgroundColor: secondColor,
-    width: '100%',
-    marginVertical: 10,
+    marginVertical: 15,
   },
   title: {color: 'white'},
 };

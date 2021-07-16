@@ -8,11 +8,14 @@ import {GetBookByISBN} from '../../Services/BookServices';
 import Toast from 'react-native-simple-toast';
 
 import BookList from './BookList';
+import useWindowsWidth from '../../CustomHooks/useWindowsWidth';
 
 const Home = () => {
   const [searchFor, setSearchFor] = useState('');
   const [books, setBooks] = useState([]);
   const [Loading, setLoading] = useState(false);
+  const onSmallScreen = useWindowsWidth();
+
   let cancelFetchData;
 
   useEffect(() => {
@@ -55,11 +58,28 @@ const Home = () => {
     );
   };
 
+  const renderSearch = () => {
+    return (
+      <View
+        style={{
+          flexDirection: onSmallScreen ? 'column' : 'row',
+          justifyContent: 'space-between',
+        }}>
+        {renderISBNInput()}
+        {renderSearchButton()}
+      </View>
+    );
+  };
+
   return (
-    <View style={{paddingHorizontal: 20, flex: 1, backgroundColor: bgColor}}>
+    <View
+      style={{
+        paddingHorizontal: 20,
+        flex: 1,
+        backgroundColor: bgColor,
+      }}>
       <StatusBar backgroundColor={mainColor} translucent={false} />
-      {renderISBNInput()}
-      {renderSearchButton()}
+      {renderSearch()}
       <BookList books={books} />
     </View>
   );

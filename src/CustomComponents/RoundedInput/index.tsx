@@ -2,6 +2,7 @@ import React from 'react';
 import {Text, TextInput, View} from 'react-native';
 import {useState} from 'react/cjs/react.development';
 import { secondColor} from '../../constants/colors';
+import useWindowsWidth from '../../CustomHooks/useWindowsWidth';
 import styles from './styles';
 
 type Props = {
@@ -10,6 +11,7 @@ type Props = {
   onChangeText: void
 }
 const RoundedInput = ( {label,value,onChangeText} : Props ) => {
+    const onSmallScreen = useWindowsWidth();
   const [isFocused, setIsFocused] = useState<Boolean>(false);
   const renderlabel = () => {
     return (
@@ -24,6 +26,7 @@ const RoundedInput = ( {label,value,onChangeText} : Props ) => {
     <View
       style={{
         alignSelf: 'stretch',
+        width:onSmallScreen?"100%":"70%"
       }}>
       {renderlabel()}
 
