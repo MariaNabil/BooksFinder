@@ -17,7 +17,7 @@ const Home = () => {
 
   useEffect(() => {
     //cancel request
-    return cancelFetchData && cancelFetchData();
+    return () => cancelFetchData && cancelFetchData();
   }, []);
 
   const fetchBook = () => {
