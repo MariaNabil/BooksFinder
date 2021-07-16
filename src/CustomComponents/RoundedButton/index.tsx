@@ -1,6 +1,7 @@
 import React from 'react';
 import {ActivityIndicator, Text, TouchableOpacity} from 'react-native';
-import {bgColor, secondColor} from '../../constants/colors.js';
+import {bgColor} from '../../constants/colors.js';
+import styles from './styles.js';
 
 type Props = {
    onPress(): void,
@@ -11,21 +12,11 @@ const RoundedButton= ({title, loading = false, onPress}:Props) => {
   return (
     <TouchableOpacity
       onPress={onPress}
-      style={[
-        {
-          justifyContent: 'center',
-          alignItems: 'center',
-          padding: 12,
-          borderRadius: 10,
-          backgroundColor: secondColor,
-          width: '100%',
-          marginVertical: 10,
-        },
-      ]}>
+      style={styles.root}>
       {loading ? (
         <ActivityIndicator size="small" color={bgColor} />
       ) : (
-        <Text style={{color: 'white'}}>{title}</Text>
+        <Text style={styles.title}>{title}</Text>
       )}
     </TouchableOpacity>
   );

@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text} from 'react-native';
 import {useQuery} from 'react-query';
-import {smallFontSize} from '../../constants/styles';
+import styles from './styles';
 
 function Authors(props) {
   console.log('props', props.query);
@@ -18,9 +18,7 @@ function Authors(props) {
 
         {status === 'loading' && <Text>Loading...</Text>}
 
-        {status === 'success' && (
-          <Text style={{fontSize: smallFontSize}}>{data.name}</Text>
-        )}
+        {status === 'success' && <Text style={styles.author}>{data.name}</Text>}
       </View>
     </View>
   );
